@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import javax.ejb.Local;
 
-import br.ufes.inf.soundbutler.core.domain.Academic;
+import br.ufes.inf.soundbutler.core.domain.User;
 import br.ufes.inf.soundbutler.core.domain.MarvinConfiguration;
 import br.ufes.inf.soundbutler.core.exceptions.SystemInstallFailedException;
 
@@ -23,5 +23,5 @@ public interface InstallSystemService extends Serializable {
 	 * @param admin
 	 * @throws SystemInstallFailedException
 	 */
-	void installSystem(MarvinConfiguration config, Academic admin) throws SystemInstallFailedException;
+	void installSystem(MarvinConfiguration config, User admin) throws SystemInstallFailedException;
 }

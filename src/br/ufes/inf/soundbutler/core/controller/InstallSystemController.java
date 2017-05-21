@@ -12,7 +12,7 @@ import javax.inject.Named;
 
 import br.ufes.inf.nemo.jbutler.ejb.controller.JSFController;
 import br.ufes.inf.soundbutler.core.application.InstallSystemService;
-import br.ufes.inf.soundbutler.core.domain.Academic;
+import br.ufes.inf.soundbutler.core.domain.User;
 import br.ufes.inf.soundbutler.core.domain.MarvinConfiguration;
 import br.ufes.inf.soundbutler.core.exceptions.SystemInstallFailedException;
 
@@ -43,7 +43,7 @@ public class InstallSystemController extends JSFController {
 	private InstallSystemService installSystemService;
 
 	/** Input: the administrator being registered during the installation. */
-	private Academic admin = new Academic();
+	private User admin = new User();
 
 	/** Input: the repeated password for the admininstrator registration. */
 	private String repeatPassword;
@@ -62,31 +62,13 @@ public class InstallSystemController extends JSFController {
 	}
 
 	/** Getter for admin. */
-	public Academic getAdmin() {
+	public User getAdmin() {
 		return admin;
 	}
 
 	/** Getter for config. */
 	public MarvinConfiguration getConfig() {
 		return config;
-	}
-
-	/**
-	 * Analyzes the name that was given to the administrator and, if the short name field is still empty, suggests a
-	 * value for it based on the given name.
-	 * 
-	 * This method is intended to be used with AJAX.
-	 */
-	public void suggestShortName() {
-		// If the name was filled and the short name is still empty, suggest the first name as short name.
-		String name = admin.getName();
-		String shortName = admin.getShortName();
-		if ((name != null) && ((shortName == null) || (shortName.length() == 0))) {
-			int idx = name.indexOf(" ");
-			admin.setShortName((idx == -1) ? name : name.substring(0, idx).trim());
-			logger.log(Level.FINE, "Suggested \"{0}\" as short name for \"{1}\"", new Object[] { admin.getShortName(), name });
-		}
-		else logger.log(Level.FINEST, "Short name not suggested: empty name or short name already filled (name is \"{0}\", short name is \"{1}\")", new Object[] { name, shortName });
 	}
 
 	/**
@@ -134,7 +116,6 @@ public class InstallSystemController extends JSFController {
 	 * @return The path to the web page that shows the next step in the installation process.
 	 */
 	public String registerAdministrator() {
-		logger.log(Level.FINEST, "Received input data:\n\t- admin.name = {0}\n\t- admin.email = {1}", new Object[] { admin.getName(), admin.getEmail() });
 
 		// Check if passwords don't match. Add an error in that case.
 		if (!checkPasswords()) return null;
@@ -149,8 +130,6 @@ public class InstallSystemController extends JSFController {
 	 * @return The path to the web page that shows the next step in the installation process.
 	 */
 	public String saveConfig() {
-		logger.log(Level.FINEST, "Previously received data:\n\t- admin.name = {0}\n\t- admin.email = {1}", new Object[] { admin.getName(), admin.getEmail() });
-		logger.log(Level.FINEST, "Received input data:\n\t- config.institutionAcronym = {0}", config.getInstitutionAcronym());
 
 		// Installs the system.
 		try {

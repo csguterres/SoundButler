@@ -24,10 +24,6 @@ public class MarvinConfiguration extends PersistentObjectSupport {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date creationDate;
 
-	/** Acronym of the institution that is using Marvin. */
-	@Basic
-	private String institutionAcronym;
-
 	/** Constructor. */
 	public MarvinConfiguration() {}
 
@@ -36,18 +32,11 @@ public class MarvinConfiguration extends PersistentObjectSupport {
 		return creationDate;
 	}
 
-	/** Getter for institutionAcronym. */
-	public String getInstitutionAcronym() {
-		return institutionAcronym;
-	}
+
 
 	/** Setter for creationDate. */
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
 	}
 
-	/** Setter for institutionAcronym. */
-	public void setInstitutionAcronym(String institutionAcronym) {
-		this.institutionAcronym = institutionAcronym;
-	}
 }

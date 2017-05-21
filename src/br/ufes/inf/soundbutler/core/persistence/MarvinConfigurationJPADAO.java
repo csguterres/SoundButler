@@ -63,7 +63,7 @@ public class MarvinConfigurationJPADAO extends BaseJPADAO<MarvinConfiguration> i
 		List<MarvinConfiguration> result = entityManager.createQuery(cq).getResultList();
 		try {
 			MarvinConfiguration cfg = result.get(0);
-			logger.log(Level.INFO, "Retrieve current configuration returned a MarvinConfiguration with institution \"{0}\" and creation date \"{1}\"", new Object[] { cfg.getInstitutionAcronym(), cfg.getCreationDate() });
+			logger.log(Level.INFO, "Retrieve current configuration returned a MarvinConfiguration with creation date \"{0}\"", new Object[] { cfg.getCreationDate() });
 			return cfg;
 		}
 		catch (IndexOutOfBoundsException e) {
