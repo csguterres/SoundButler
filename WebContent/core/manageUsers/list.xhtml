@@ -80,10 +80,10 @@
 					<p:commandButton action="#{manageUsersController.update}" value="#{msgs['jbutler.crud.button.update']}" icon="fa fa-fw fa-refresh" disabled="#{manageUsersController.user == null}" />
 					<p:commandButton action="#{manageUsersController.trash}" value="#{msgs['jbutler.crud.button.delete']}" icon="fa fa-fw fa-trash-o" disabled="#{manageUsersController.user == null}" process="@this" update=":listingForm:trashGroup" />
 				</ui:decorate>
-				<p:hotkey bind="#{msgs['jbutler.crud.hotkey.create']}" action="#{manageUsersController.create}" />
+				<p:hotkey bind="#{msgs['jbutler.crud.hotkey.create']}" action="#{manageUsersController.criaNovo}" />
 				<p:hotkey bind="#{msgs['jbutler.crud.hotkey.retrieve']}" action="#{manageUsersController.retrieve}" rendered="#{manageUsersController.user != null}" />
 				<p:hotkey bind="#{msgs['jbutler.crud.hotkey.update']}" action="#{manageUsersController.update}" rendered="#{manageUsersController.user != null}" />
-				<p:hotkey bind="#{msgs['jbutler.crud.hotkey.delete']}" action="#{manageUsersController.trash}" rendered="#{manageUsersController.user != null}" process="@this" update=":listingForm:trashGroup" />
+				<p:hotkey bind="#{msgs['jbutler.crud.hotkey.delete']}" action="#{manageUsersController.deletar}" rendered="#{manageUsersController.user != null}" process="@this" update=":listingForm:trashGroup" />
 			</h:panelGroup>
 
 			<!-- The trash panel: shows entities that have been selected for deletion. -->

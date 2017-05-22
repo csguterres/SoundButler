@@ -14,6 +14,7 @@ import br.ufes.inf.soundbutler.core.domain.User;
 public interface UserDAO extends BaseDAO<User> {
 	
 	List<Song> retrieveSongs(String username) throws PersistentObjectNotFoundException, MultiplePersistentObjectsFoundException ;
-
+	public void salvar(User user) throws Exception ;
+	public void deletar(User user) throws Exception ;
 	User retrieveByEmail(String email) throws PersistentObjectNotFoundException, MultiplePersistentObjectsFoundException;
 }

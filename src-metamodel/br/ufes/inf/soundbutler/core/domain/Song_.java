@@ -1,7 +1,6 @@
 package br.ufes.inf.soundbutler.core.domain;
 
 import br.ufes.inf.soundbutler.core.domain.User;
-import br.ufes.inf.soundbutler.people.domain.Person_;
 import java.util.Date;
 import javax.annotation.Generated;
 import javax.persistence.metamodel.SetAttribute;

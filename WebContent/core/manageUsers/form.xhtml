@@ -10,12 +10,15 @@
                 template="/resources/#{coreInfo.decorator}/decorator.xhtml">
 
 	<ui:define name="title">
-		<h:outputText value="#{msgsCore['manageUsers.title.create']}" />
+		<h:outputText value="#{msgsCore['manageUsers.title.create']}" rendered="#{(! manageUsersController.readOnly) and (manageUsersController.user.id == null)}" />
+		<h:outputText value="#{msgsCore['manageUsers.title.update']}" rendered="#{(! manageUsersController.readOnly) and (manageUsersController.user.id != null)}" />
+		<h:outputText value="#{msgsCore['manageUsers.title.retrieve']}" rendered="#{manageUsersController.readOnly}" />
 	</ui:define>
     
     <ui:define name="description">
-		<h:outputText value="#{msgsCore['manageUsers.title.create.description']}" />
-	
+		<h:outputText value="#{msgsCore['manageUsers.title.create.description']}" rendered="#{(! manageUsersController.readOnly) and (manageUsersController.user.id == null)}" />
+		<h:outputText value="#{msgsCore['manageUsers.title.update.description']}" rendered="#{(! manageUsersController.readOnly) and (manageUsersController.user.id != null)}" />
+		<h:outputText value="#{msgsCore['manageUsers.title.retrieve.description']}" rendered="#{manageUsersController.readOnly}" />
     </ui:define>
 
 	<ui:define name="body">
@@ -24,20 +27,18 @@
 			<ui:param name="formLabel" value="#{msgsCore['manageUsers.form.title']}" />
 			<p:hotkey bind="#{msgs['jbutler.crud.hotkey.focusFirstField']}" handler="findObjectById('form:name').focus();" />
 
-
-			
 			<ui:decorate template="/resources/#{coreInfo.decorator}/formfield.xhtml">
-				<ui:param name="fieldName" value="email" />
-				<ui:param name="label" value="#{msgsCore['manageUsers.field.email']}" />
-				<p:inputText id="email" value="#{manageUsersController.selectedEntity.email}" required="true" disabled="#{manageUsersController.readOnly}">
-					<p:ajax event="blur" update="emailField" />
+				<ui:param name="fieldName" value="name" />
+				<ui:param name="label" value="#{msgsCore['manageUsers.form.name']}" />
+				<p:inputText id="name" value="#{manageUsersController.user.name}" required="true" pt:placeholder="#{msgsCore['manageUsers.form.name.placeholder']}" disabled="#{manageUsersController.readOnly}">
+					<p:ajax event="blur" update="nameField" />
 				</p:inputText>
 			</ui:decorate>
 
 			<h:panelGroup rendered="#{! manageUsersController.readOnly}">
 				<ui:decorate template="/resources/#{coreInfo.decorator}/formbuttonpanel-02.xhtml">
 					<p:commandButton id="cancelButton" action="#{manageUsersController.list}" value="#{msgs['jbutler.crud.button.cancel']}" immediate="true" icon="fa fa-fw fa-close" />
-					<p:commandButton id="saveButton" action="#{manageUsersController.save}" value="#{msgs['jbutler.crud.button.save']}" update=":form :globalMessages" icon="fa fa-fw fa-save" />
+					<p:commandButton id="saveButton" action="#{manageUsersController.salvar}" value="#{msgs['jbutler.crud.button.save']}" update=":form :globalMessages" icon="fa fa-fw fa-save" />
 					<p:defaultCommand target="saveButton" />
 					<p:hotkey bind="#{msgs['jbutler.crud.hotkey.backToList']}" action="#{manageUsersController.list}" immediate="true" />
 				</ui:decorate>

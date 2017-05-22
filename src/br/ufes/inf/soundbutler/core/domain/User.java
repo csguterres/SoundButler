@@ -19,7 +19,6 @@ import javax.persistence.Id;
 @Entity
 public class User extends PersistentObjectSupport {
 	
-	
 	@Column(length = 128)
 	private String name;
 
@@ -34,10 +33,10 @@ public class User extends PersistentObjectSupport {
 	@ManyToMany
 	private Set<Song> songs;
 
-	/** The timestamp of the moment this user was created. */
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date creationDate;
-
+	public User(){
+		
+	}
+	
 	/** Getter for userName. */
 	public String getName() {
 		return name;
@@ -68,15 +67,5 @@ public class User extends PersistentObjectSupport {
 		this.password = password;
 	}
 
-	/** Getter for creationDate. */
-	public Date getCreationDate() {
-		return creationDate;
-	}
-
-	/** Setter for creationDate. */
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
-	}
-	
 
 }

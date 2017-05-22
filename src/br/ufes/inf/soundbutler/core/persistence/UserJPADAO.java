@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -21,7 +22,6 @@ import br.ufes.inf.nemo.jbutler.ejb.persistence.exceptions.PersistentObjectNotFo
 import br.ufes.inf.soundbutler.core.domain.Song;
 import br.ufes.inf.soundbutler.core.domain.User;
 import br.ufes.inf.soundbutler.core.domain.User_;
-import br.ufes.inf.soundbutler.people.domain.Person_;
 
 /**
  * TODO: document this type.
@@ -38,13 +38,16 @@ public class UserJPADAO extends BaseJPADAO<User> implements UserDAO {
 	private static final Logger logger = Logger.getLogger(UserJPADAO.class.getCanonicalName());
 
 	/** The application's persistent context provided by the application server. */
-	@PersistenceContext
+	@PersistenceContext(unitName="SoundButler")
 	private EntityManager entityManager;
 
 	/** @see br.ufes.inf.nemo.jbutler.ejb.persistence.BaseJPADAO#getEntityManager() */
 	@Override
 	protected EntityManager getEntityManager() {
 		return entityManager;
+	}
+	
+	public UserJPADAO(){
 	}
 
 	/** @see br.ufes.inf.soundbutler.core.persistence.UserDAO#retrieveByEmail(java.lang.String) */
@@ -83,6 +86,36 @@ public class UserJPADAO extends BaseJPADAO<User> implements UserDAO {
         return query.getResultList() ;
 
 	}
-
 	
+    public void salvar(User user) {
+    	try{
+	        if (user.getId() == null) {
+	        	System.out.println(user.getEmail()) ;
+	    		
+	        	System.out.println(entityManager.getClass()) ;
+	
+	        	entityManager.persist(user);
+	        } else {
+	            if (!entityManager.contains(user)) {
+	                if (entityManager.find(User.class, user.getId()) == null) {
+	                    throw new Exception("Erro ao atualizar os dados do Cleinte!");
+	                }
+	            }
+	            entityManager.merge(user);
+	        }
+    	}catch(Exception e){
+			e.printStackTrace();
+    	}
+    }
+    
+    public void deletar(User user) {
+    	try{
+	        if (user.getId() != null) {
+	        	User new_user = entityManager.merge(user) ;
+	        	entityManager.remove(new_user);
+	        }
+    	}catch(Exception e){
+			e.printStackTrace();
+    	}
+    }
 }

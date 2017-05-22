@@ -8,6 +8,8 @@ import br.ufes.inf.soundbutler.core.domain.User;
 
 @Local
 public interface ManageUsersService extends CrudService<User> {
-	
 
+	void salvar(User user);
+	void deletar(User user);
+	
 }

@@ -31,6 +31,20 @@ public class ManageUsersController extends CrudController<User> {
 	@EJB
 	private ManageUsersService manageUsersService;
 
+	private User user = new User();
+	
+	public ManageUsersController(){
+		user = new User() ;
+	}
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	/** @see br.ufes.inf.nemo.jbutler.ejb.controller.CrudController#getCrudService() */
 	@Override
 	protected CrudService<User> getCrudService() {
@@ -43,11 +57,23 @@ public class ManageUsersController extends CrudController<User> {
 		addFilter(new SimpleFilter("manageUsers.filter.byName", "name", getI18nMessage("msgsCore", "manageUsers.text.filter.byName")));
 	}
 
-	/**
-	 * TODO: document this method.
-	 * 
-	 * @param query
-	 * @return
-	 */
+	public String salvar() {
+		manageUsersService.salvar(user) ;
+		user = new User() ;
+		return "/core/manageUsers/list?faces-redirect=true" ;
+	}
+	
+	public String deletar() {
+
+		manageUsersService.deletar(user) ;
+		user = new User() ;
+		System.out.println(user) ;
+		return "/core/manageUsers/list?faces-redirect=true" ;
+	}
+	
+	public String criarNovo(){
+		user = new User() ;
+		return "/core/manageUsers/form?faces-redirect=true" ;
+	}
 	
 }

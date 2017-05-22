@@ -28,7 +28,6 @@ import br.ufes.inf.nemo.jbutler.ejb.persistence.exceptions.PersistentObjectNotFo
 import br.ufes.inf.soundbutler.core.domain.User;
 import br.ufes.inf.soundbutler.core.persistence.UserDAO;
 
-
 @PermitAll
 @Stateless
 public class ManageUsersServiceBean extends CrudServiceBean<User> implements ManageUsersService {
@@ -36,6 +35,7 @@ public class ManageUsersServiceBean extends CrudServiceBean<User> implements Man
 	@Resource
 	private SessionContext sessionContext;
 	
+	@EJB
 	private UserDAO userDAO;
 	
 	@EJB
@@ -46,18 +46,7 @@ public class ManageUsersServiceBean extends CrudServiceBean<User> implements Man
 		// TODO Auto-generated method stub
 		return userDAO;
 	}
-	
-	@Override
-	protected User validate(User newEntity, User oldEntity) {
-		// New users must have their creation date set.
-		Date now = new Date(System.currentTimeMillis());
-		if (oldEntity == null) newEntity.setCreationDate(now);
-
-		// All users have their last update date set when persisted.
-
-		return newEntity;
-	}
-	
+		
 	/** @see br.ufes.inf.nemo.jbutler.ejb.application.CrudServiceBean#create(br.ufes.inf.nemo.jbutler.ejb.persistence.PersistentObject) */
 	@Override
 	public void create(User entity) {
@@ -81,6 +70,25 @@ public class ManageUsersServiceBean extends CrudServiceBean<User> implements Man
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public void salvar(User user) {
+		try {
+			userDAO.salvar(user);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void deletar(User user) {
+		try {
+			userDAO.deletar(user);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("Cheguei aqui também") ;
+			e.printStackTrace();
+		}
 	}
 	
 }
