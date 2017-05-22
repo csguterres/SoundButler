@@ -7,17 +7,13 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 import br.ufes.inf.nemo.jbutler.ejb.application.CrudService;
+import br.ufes.inf.nemo.jbutler.ejb.application.filters.LikeFilter;
 import br.ufes.inf.nemo.jbutler.ejb.application.filters.SimpleFilter;
 import br.ufes.inf.nemo.jbutler.ejb.controller.CrudController;
 import br.ufes.inf.soundbutler.core.application.ManageUsersService;
 import br.ufes.inf.soundbutler.core.domain.User;
 
-/**
- * TODO: document this type.
- *
- * @author V�tor E. Silva Souza (vitorsouza@gmail.com)
- * @version 1.0
- */
+
 @Named
 @SessionScoped
 public class ManageUsersController extends CrudController<User> {
@@ -54,7 +50,7 @@ public class ManageUsersController extends CrudController<User> {
 	/** @see br.ufes.inf.nemo.jbutler.ejb.controller.ListingController#initFilters() */
 	@Override
 	protected void initFilters() {
-		addFilter(new SimpleFilter("manageUsers.filter.byName", "name", getI18nMessage("msgsCore", "manageUsers.text.filter.byName")));
+		addFilter(new LikeFilter("manageUsers.filter.byName", "name", getI18nMessage("msgsCore", "manageUsers.text.filter.byName")));
 	}
 //
 //	public String salvar() {
