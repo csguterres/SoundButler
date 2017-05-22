@@ -3,6 +3,7 @@ package br.ufes.inf.soundbutler.core.persistence;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -12,6 +13,7 @@ import br.ufes.inf.nemo.jbutler.ejb.persistence.exceptions.MultiplePersistentObj
 import br.ufes.inf.nemo.jbutler.ejb.persistence.exceptions.PersistentObjectNotFoundException;
 import br.ufes.inf.soundbutler.core.domain.Song;
 
+@Stateless
 public class SongJPADAO extends BaseJPADAO<Song> implements SongDAO {
 	/** Serialization id. */
 	private static final long serialVersionUID = 1L;
