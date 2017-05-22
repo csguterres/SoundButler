@@ -26,7 +26,7 @@ import br.ufes.inf.soundbutler.core.domain.User_;
 /**
  * TODO: document this type.
  *
- * @author Vítor E. Silva Souza (vitorsouza@gmail.com)
+ * @author Vï¿½tor E. Silva Souza (vitorsouza@gmail.com)
  * @version 1.0
  */
 @Stateless
@@ -47,8 +47,13 @@ public class UserJPADAO extends BaseJPADAO<User> implements UserDAO {
 		return entityManager;
 	}
 	
-	public UserJPADAO(){
+	@Override
+	public Class<User> getDomainClass() {
+		return User.class;
 	}
+	
+//	public UserJPADAO(){
+//	}
 
 	/** @see br.ufes.inf.soundbutler.core.persistence.UserDAO#retrieveByEmail(java.lang.String) */
 	@Override

@@ -42,7 +42,7 @@ public class ManageUsersServiceBean extends CrudServiceBean<User> implements Man
 	private CoreInformation coreInformation;
 	
 	@Override
-	public BaseDAO getDAO() {
+	public BaseDAO<User> getDAO() {
 		// TODO Auto-generated method stub
 		return userDAO;
 	}
@@ -86,7 +86,7 @@ public class ManageUsersServiceBean extends CrudServiceBean<User> implements Man
 			userDAO.deletar(user);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			System.out.println("Cheguei aqui também") ;
+			System.out.println("Cheguei aqui tambï¿½m") ;
 			e.printStackTrace();
 		}
 	}

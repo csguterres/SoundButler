@@ -49,7 +49,7 @@
 				rowsPerPageTemplate="#{manageUsersController.halfMaxDataTableRowsPerPage},#{manageUsersController.maxDataTableRowsPerPage},#{manageUsersController.doubleMaxDataTableRowsPerPage}"
 				lazy="true" 
 				paginator="true" 
-				selection="#{manageUsersController.user}" 
+				selection="#{manageUsersController.selectedEntity}" 
 				selectionMode="single" 
 				paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}" 
 				paginatorPosition="bottom" 
@@ -76,14 +76,14 @@
 			<h:panelGroup id="buttonsGroup">
 				<ui:decorate template="/resources/#{coreInfo.decorator}/formbuttonpanel-04.xhtml">
 					<p:commandButton action="#{manageUsersController.create}" value="#{msgs['jbutler.crud.button.create']}" icon="fa fa-fw fa-user-plus" />
-					<p:commandButton action="#{manageUsersController.retrieve}" value="#{msgs['jbutler.crud.button.retrieve']}" icon="fa fa-fw fa-file-text" disabled="#{manageUsersController.user == null}" />
-					<p:commandButton action="#{manageUsersController.update}" value="#{msgs['jbutler.crud.button.update']}" icon="fa fa-fw fa-refresh" disabled="#{manageUsersController.user == null}" />
-					<p:commandButton action="#{manageUsersController.trash}" value="#{msgs['jbutler.crud.button.delete']}" icon="fa fa-fw fa-trash-o" disabled="#{manageUsersController.user == null}" process="@this" update=":listingForm:trashGroup" />
+					<p:commandButton action="#{manageUsersController.retrieve}" value="#{msgs['jbutler.crud.button.retrieve']}" icon="fa fa-fw fa-file-text" disabled="#{manageUsersController.selectedEntity == null}" />
+					<p:commandButton action="#{manageUsersController.update}" value="#{msgs['jbutler.crud.button.update']}" icon="fa fa-fw fa-refresh" disabled="#{manageUsersController.selectedEntity == null}" />
+					<p:commandButton action="#{manageUsersController.trash}" value="#{msgs['jbutler.crud.button.delete']}" icon="fa fa-fw fa-trash-o" disabled="#{manageUsersController.selectedEntity == null}" process="@this" update=":listingForm:trashGroup" />
 				</ui:decorate>
-				<p:hotkey bind="#{msgs['jbutler.crud.hotkey.create']}" action="#{manageUsersController.criaNovo}" />
-				<p:hotkey bind="#{msgs['jbutler.crud.hotkey.retrieve']}" action="#{manageUsersController.retrieve}" rendered="#{manageUsersController.user != null}" />
-				<p:hotkey bind="#{msgs['jbutler.crud.hotkey.update']}" action="#{manageUsersController.update}" rendered="#{manageUsersController.user != null}" />
-				<p:hotkey bind="#{msgs['jbutler.crud.hotkey.delete']}" action="#{manageUsersController.deletar}" rendered="#{manageUsersController.user != null}" process="@this" update=":listingForm:trashGroup" />
+				<p:hotkey bind="#{msgs['jbutler.crud.hotkey.create']}" action="#{manageUsersController.create}" />
+				<p:hotkey bind="#{msgs['jbutler.crud.hotkey.retrieve']}" action="#{manageUsersController.retrieve}" rendered="#{manageUsersController.selectedEntity != null}" />
+				<p:hotkey bind="#{msgs['jbutler.crud.hotkey.update']}" action="#{manageUsersController.update}" rendered="#{manageUsersController.selectedEntity != null}" />
+				<p:hotkey bind="#{msgs['jbutler.crud.hotkey.delete']}" action="#{manageUsersController.trash}" rendered="#{manageAcademicsController.selectedEntity != null}" process="@this" update=":listingForm:trashGroup" />
 			</h:panelGroup>
 
 			<!-- The trash panel: shows entities that have been selected for deletion. -->
