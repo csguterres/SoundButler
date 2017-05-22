@@ -18,7 +18,7 @@
 
 		<h:form id="emailForm">
 
-			<table frame="box">
+			
 
 				<tr>
 					<td><h:outputText value="Name:" /></td>
@@ -27,13 +27,13 @@
 							size="30"
 							requiredMessage="Name field must not be empty" /></td>
 				</tr>
-
+				<p/>
 				<tr>
 					<td><h:outputText value="Email:" /></td>
 					<td><h:inputText id="email" value="#{emailService.email}"
 							size="30" /></td>
 				</tr>
-
+				<p/>
 				<tr>
 					<td><h:outputText value="Message:" /></td>
 					<td><h:inputText id="message" value="#{emailService.message}"
@@ -47,7 +47,7 @@
 					<td />
 				</tr>
 
-			</table>
+		
 
 		</h:form>
 
