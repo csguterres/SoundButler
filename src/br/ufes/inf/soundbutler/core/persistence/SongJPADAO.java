@@ -12,6 +12,7 @@ import br.ufes.inf.nemo.jbutler.ejb.application.filters.Filter;
 import br.ufes.inf.nemo.jbutler.ejb.persistence.exceptions.MultiplePersistentObjectsFoundException;
 import br.ufes.inf.nemo.jbutler.ejb.persistence.exceptions.PersistentObjectNotFoundException;
 import br.ufes.inf.soundbutler.core.domain.Song;
+import br.ufes.inf.soundbutler.core.domain.User;
 
 @Stateless
 public class SongJPADAO extends BaseJPADAO<Song> implements SongDAO {
@@ -31,6 +32,15 @@ public class SongJPADAO extends BaseJPADAO<Song> implements SongDAO {
 		return entityManager;
 	}
 
-	
+    public void deletar(Song song) {
+    	try{
+	        if (song.getId() != null) {
+	        	Song new_song = entityManager.merge(song) ;
+	        	entityManager.remove(new_song);
+	        }
+    	}catch(Exception e){
+			e.printStackTrace();
+    	}
+    }
 
 }

@@ -40,6 +40,12 @@ public class ManageSongsController extends CrudController<Song> {
 	protected void initFilters() {
 		addFilter(new LikeFilter("manageSongs.filter.byName", "name", getI18nMessage("msgsCore", "manageSongs.text.filter.byName")));
 	}
+	
+	public String deletar() {
+
+		manageSongsService.deletar(selectedEntity) ;
+		return "/core/manageSongs/list?faces-redirect=true" ;
+	}
 
 
 }

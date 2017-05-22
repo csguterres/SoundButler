@@ -59,13 +59,11 @@ public class ManageUsersController extends CrudController<User> {
 //		return "/core/manageUsers/list?faces-redirect=true" ;
 //	}
 	
-//	public String deletar() {
-//
-//		manageUsersService.deletar(user) ;
-//		user = new User() ;
-//		System.out.println(user) ;
-//		return "/core/manageUsers/list?faces-redirect=true" ;
-//	}
+	public String deletar() {
+
+		manageUsersService.deletar(selectedEntity) ;
+		return "/core/manageUsers/list?faces-redirect=true" ;
+	}
 	
 //	public String criarNovo(){
 //		user = new User() ;
