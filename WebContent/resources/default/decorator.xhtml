@@ -229,20 +229,14 @@
 				<ul class="sidebar-menu">
 				
 					<li class="header"><h:outputText value="#{msgs['title.menu']}" /></li>
-					<li><h:commandLink action="#{installSystemController.begin}" rendered="#{not coreInfo.systemInstalled}"><i class="fa fa-users"></i> <span><h:outputText value="Usuários" /></span></h:commandLink></li> 
-					<li><h:link outcome="/core/login/index" rendered="#{coreInfo.systemInstalled and not sessionController.loggedIn}"><i class="fa fa-key"></i> <span><h:outputText value="" /></span></h:link></li>
+					<li><h:commandLink action="/core/manageUsers/list?faces-redirect=true" rendered="#{not coreInfo.systemInstalled}"><i class="fa fa-users"></i> <span><h:outputText value="Usuários" /></span></h:commandLink></li> 
+					<!-- <li><h:link outcome="/core/login/index" rendered="#{coreInfo.systemInstalled and not sessionController.loggedIn}"><i class="fa fa-key"></i> <span><h:outputText value="" /></span></h:link></li> -->					
 					
 					<li><h:commandLink action="#{installSystemController.begin}" rendered="#{not coreInfo.systemInstalled}"><i class="fa fa-music"></i> <span><h:outputText value="Músicas" /></span></h:commandLink></li> 
-					<li><h:link outcome="/core/login/index" rendered="#{coreInfo.systemInstalled and not sessionController.loggedIn}"><i class="fa fa-key"></i> <span><h:outputText value="" /></span></h:link></li>
+					<!-- <li><h:link outcome="/core/login/index" rendered="#{coreInfo.systemInstalled and not sessionController.loggedIn}"><i class="fa fa-key"></i> <span><h:outputText value="" /></span></h:link></li> -->					
 					
 					<li><h:commandLink action="#{installSystemController.begin}" rendered="#{not coreInfo.systemInstalled}"><i class="fa fa-child"></i> <span><h:outputText value="Artistas" /></span></h:commandLink></li> 
-					<li><h:link outcome="/core/login/index" rendered="#{coreInfo.systemInstalled and not sessionController.loggedIn}"><i class="fa fa-key"></i> <span><h:outputText value="" /></span></h:link></li>
-					
-					
-					<p:submenu id="menu_leiturista" label="Leiturista" icon="fa fa-gg">
-						 <p:menuitem id="leituristas" value="Visualizar leituristas" icon="fa fa-sign-in" url="core/manageLeituristas/list.xhtml"/>
-					
-					</p:submenu>					
+					<!-- <li><h:link outcome="/core/login/index" rendered="#{coreInfo.systemInstalled and not sessionController.loggedIn}"><i class="fa fa-key"></i> <span><h:outputText value="" /></span></h:link></li> -->					
 					
 					
 				</ul>
