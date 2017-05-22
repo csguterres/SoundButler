@@ -17,8 +17,6 @@ import javax.inject.Named;
 
 import br.ufes.inf.nemo.jbutler.ResourceUtil;
 import br.ufes.inf.nemo.jbutler.ejb.persistence.exceptions.PersistentObjectNotFoundException;
-import br.ufes.inf.soundbutler.core.domain.MarvinConfiguration;
-import br.ufes.inf.soundbutler.core.persistence.MarvinConfigurationDAO;
 
 /**
  * TODO: document this type.
@@ -42,11 +40,7 @@ public class CoreInformation implements Serializable {
 	private static final String DEFAULT_DECORATOR_NAME = "default";
 
 	/** The DAO for MarvinConfiguration objects. */
-	@EJB
-	private MarvinConfigurationDAO marvinConfigurationDAO;
 
-	/** TODO: document this field. */
-	private MarvinConfiguration currentConfig;
 
 	/** Indicates if the system is properly installed. */
 	private Boolean systemInstalled;
@@ -66,14 +60,6 @@ public class CoreInformation implements Serializable {
 		// At first use, check if the system is installed.
 		logger.log(Level.FINER, "Checking if the system has been installed...");
 
-		// If the system is configured, it's installed.
-		try {
-			currentConfig = marvinConfigurationDAO.retrieveCurrentConfiguration();
-			systemInstalled = true;
-		}
-		catch (PersistentObjectNotFoundException e) {
-			systemInstalled = false;
-		}
 
 		// Load quotes.
 		quotes = new ArrayList<>();
@@ -88,10 +74,10 @@ public class CoreInformation implements Serializable {
 		}
 	}
 
-	/** Getter for currentConfig. */
-	public MarvinConfiguration getCurrentConfig() {
-		return currentConfig;
-	}
+//	/** Getter for currentConfig. */
+//	public MarvinConfiguration getCurrentConfig() {
+//		return currentConfig;
+//	}
 
 	/** Getter for systemInstalled. */
 	public Boolean getSystemInstalled() {
