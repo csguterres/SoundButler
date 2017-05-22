@@ -20,12 +20,12 @@
 
 				<ui:decorate template="/resources/#{coreInfo.decorator}/formfield-filter.xhtml">
 					<p:selectOneMenu id="filter" required="true" value="#{manageSongsController.filterKey}">
-						<f:selectItems value="#{manageUsersController.filters}" var="filter" itemLabel="#{filter.label}" itemValue="#{filter.key}" />
-						<f:ajax event="change" execute="@form" listener="#{manageUsersController.changeFilter}" render="@form :listingForm" />
+						<f:selectItems value="#{manageSongsController.filters}" var="filter" itemLabel="#{filter.label}" itemValue="#{filter.key}" />
+						<f:ajax event="change" execute="@form" listener="#{manageSongsController.changeFilter}" render="@form :listingForm" />
 					</p:selectOneMenu>
-					<p:inputText id="filterText" required="false" value="#{manageSongsController.filterParam}" rendered="#{manageUsersController.filter.options == null}" />
-					<p:selectOneMenu id="filterSelect" required="false" value="#{manageUsersController.filterParam}" rendered="#{manageUsersController.filter.options != null}">
-						<f:selectItems value="#{manageUsersController.filter.reversedOptionsLabels}" />
+					<p:inputText id="filterText" required="false" value="#{manageSongsController.filterParam}" rendered="#{manageSongsController.filter.options == null}" />
+					<p:selectOneMenu id="filterSelect" required="false" value="#{manageSongsController.filterParam}" rendered="#{manageSongsController.filter.options != null}">
+						<f:selectItems value="#{manageSongsController.filter.reversedOptionsLabels}" />
 					</p:selectOneMenu>
 					<p:commandButton action="#{manageSongsController.filter}" value="#{msgs['jbutler.crud.button.filter']}" process="@form" update=":listingForm @form" icon="fa fa-fw fa-search" />
 					<p:commandButton action="#{manageSongsController.cancelFilter}" value="#{msgs['jbutler.crud.button.cancelFilter']}" process="@form" update=":listingForm @form" icon="fa fa-fw fa-close" rendered="#{manageSongsController.filtering}" />
@@ -60,8 +60,8 @@
 					<h:outputText value="#{entity.name}" />
 				</p:column>
 
-				<p:column headerText="#{msgsCore['manageSongs.form.email']}">
-					<h:outputText value="#{entity.email}" />
+				<p:column headerText="#{msgsCore['manageSongs.form.${attribute2}']}">
+					<h:outputText value="#{entity.${attribute2}}" />
 				</p:column>
 
 				<p:ajax event="rowSelect" update=":listingForm:buttonsGroup" />
@@ -83,7 +83,7 @@
 				<p:hotkey bind="#{msgs['jbutler.crud.hotkey.create']}" action="#{manageSongsController.create}" />
 				<p:hotkey bind="#{msgs['jbutler.crud.hotkey.retrieve']}" action="#{manageSongsController.retrieve}" rendered="#{manageSongsController.selectedEntity != null}" />
 				<p:hotkey bind="#{msgs['jbutler.crud.hotkey.update']}" action="#{manageSongsController.update}" rendered="#{manageSongsController.selectedEntity != null}" />
-				<p:hotkey bind="#{msgs['jbutler.crud.hotkey.delete']}" action="#{manageSongsController.trash}" rendered="#{manageSongsController.selectedEntity != null}" process="@this" update=":listingForm:trashGroup" />
+				<p:hotkey bind="#{msgs['jbutler.crud.hotkey.delete']}" action="#{manageSongsController.trash}" rendered="#{manageAcademicsController.selectedEntity != null}" process="@this" update=":listingForm:trashGroup" />
 			</h:panelGroup>
 
 			<!-- The trash panel: shows entities that have been selected for deletion. -->
