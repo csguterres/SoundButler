@@ -20,6 +20,7 @@ public class Song extends PersistentObjectSupport{
 	@NotNull
 	@Size(max = 100)
 	private String name;
+	private String artist;
 	
 	@ManyToMany(mappedBy = "songs") 
 	private Set<User> users;
@@ -38,6 +39,14 @@ public class Song extends PersistentObjectSupport{
 
 	public void setUsers(Set<User> users) {
 		this.users = users;
+	}
+
+	public String getArtist() {
+		return artist;
+	}
+
+	public void setArtist(String artist) {
+		this.artist = artist;
 	}
 	
     
