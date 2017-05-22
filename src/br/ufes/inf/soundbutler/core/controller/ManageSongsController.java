@@ -9,13 +9,15 @@ import javax.inject.Named;
 import br.ufes.inf.nemo.jbutler.ejb.application.CrudService;
 import br.ufes.inf.nemo.jbutler.ejb.application.filters.LikeFilter;
 import br.ufes.inf.nemo.jbutler.ejb.controller.CrudController;
+import br.ufes.inf.soundbutler.core.application.ManageSongsService;
 import br.ufes.inf.soundbutler.core.application.ManageUsersService;
+import br.ufes.inf.soundbutler.core.domain.Song;
 import br.ufes.inf.soundbutler.core.domain.User;
 
 
 @Named
 @SessionScoped
-public class ManageSongsController extends CrudController<User> {
+public class ManageSongsController extends CrudController<Song> {
 
 	/** TODO: document this field. */
 	private static final long serialVersionUID = 1L;
@@ -25,18 +27,18 @@ public class ManageSongsController extends CrudController<User> {
 
 	/** TODO: document this field. */
 	@EJB
-	private ManageUsersService manageUsersService;
+	private ManageSongsService manageSongsService;
 
 	/** @see br.ufes.inf.nemo.jbutler.ejb.controller.CrudController#getCrudService() */
 	@Override
-	protected CrudService<User> getCrudService() {
-		return manageUsersService;
+	protected CrudService<Song> getCrudService() {
+		return manageSongsService;
 	}
 
 	/** @see br.ufes.inf.nemo.jbutler.ejb.controller.ListingController#initFilters() */
 	@Override
 	protected void initFilters() {
-		addFilter(new LikeFilter("manageUsers.filter.byName", "name", getI18nMessage("msgsCore", "manageUsers.text.filter.byName")));
+		addFilter(new LikeFilter("manageSongs.filter.byName", "name", getI18nMessage("msgsCore", "manageSongs.text.filter.byName")));
 	}
 
 
