@@ -227,9 +227,24 @@
 				<!-- Sidebar Menu -->
 				<h:form id="sidebarMenuForm">
 				<ul class="sidebar-menu">
+				
 					<li class="header"><h:outputText value="#{msgs['title.menu']}" /></li>
-					<li><h:commandLink action="#{installSystemController.begin}" rendered="#{not coreInfo.systemInstalled}"><i class="fa fa-cogs"></i> <span><h:outputText value="#{msgsCore['core.menu.installSystem']}" /></span></h:commandLink></li>
-					<li><h:link outcome="/core/login/index" rendered="#{coreInfo.systemInstalled and not sessionController.loggedIn}"><i class="fa fa-key"></i> <span><h:outputText value="#{msgsCore['core.menu.login']}" /></span></h:link></li>
+					<li><h:commandLink action="#{installSystemController.begin}" rendered="#{not coreInfo.systemInstalled}"><i class="fa fa-users"></i> <span><h:outputText value="Usuários" /></span></h:commandLink></li> 
+					<li><h:link outcome="/core/login/index" rendered="#{coreInfo.systemInstalled and not sessionController.loggedIn}"><i class="fa fa-key"></i> <span><h:outputText value="" /></span></h:link></li>
+					
+					<li><h:commandLink action="#{installSystemController.begin}" rendered="#{not coreInfo.systemInstalled}"><i class="fa fa-music"></i> <span><h:outputText value="Músicas" /></span></h:commandLink></li> 
+					<li><h:link outcome="/core/login/index" rendered="#{coreInfo.systemInstalled and not sessionController.loggedIn}"><i class="fa fa-key"></i> <span><h:outputText value="" /></span></h:link></li>
+					
+					<li><h:commandLink action="#{installSystemController.begin}" rendered="#{not coreInfo.systemInstalled}"><i class="fa fa-child"></i> <span><h:outputText value="Artistas" /></span></h:commandLink></li> 
+					<li><h:link outcome="/core/login/index" rendered="#{coreInfo.systemInstalled and not sessionController.loggedIn}"><i class="fa fa-key"></i> <span><h:outputText value="" /></span></h:link></li>
+					
+					
+					<p:submenu id="menu_leiturista" label="Leiturista" icon="fa fa-gg">
+						 <p:menuitem id="leituristas" value="Visualizar leituristas" icon="fa fa-sign-in" url="core/manageLeituristas/list.xhtml"/>
+					
+					</p:submenu>					
+					
+					
 				</ul>
 				</h:form>
 				<!-- /.sidebar-menu -->
@@ -271,7 +286,7 @@
 		<!-- Main Footer -->
 		<footer class="main-footer">
 			<!-- To the right -->
-			<div class="pull-right hidden-xs"><h:outputLink value="https://www.google.com/webhp"><h:outputText value="42" /><f:param name="q" value="Answer+to+the+Ultimate+Question+of+Life%2C+the+Universe%2C+and+Everything" /></h:outputLink></div>
+			<div class="pull-right hidden-xs"><h:outputLink value="https://www.google.com/webhp"><h:outputText value="" /><f:param name="q" value="Answer+to+the+Ultimate+Question+of+Life%2C+the+Universe%2C+and+Everything" /></h:outputLink></div>
 			<!-- Default to the left -->
 			<strong>Copyright &#169; 2017 </strong> All rights reserved.
 		</footer>
